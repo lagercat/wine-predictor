@@ -1,25 +1,27 @@
-import matplotlib
-
-matplotlib.use('Agg')
-
 from matplotlib import pyplot as plt
 import pandas as pd
-from collections import Counter
-from functools import reduce
 
 
 DATASET_PATH = "/home/malessebastian/datasets/wine/winemag-data-130k-v2.csv"
-POINTS_INDEX = 4
-PRICE_INDEX = 5
 dataset = pd.read_csv(DATASET_PATH)
 
 (points, prices) = (dataset['points'].dropna().tolist(),
-        dataset['price'].dropna().tolist())
-num_bins = 10
+                    dataset['price'].dropna().tolist())
 
-plt.hist(prices, bins=num_bins)
+binsForPoints = [x for x in range(80, 101, 2)]
+binsForPrices = [x for x in range(0, 251, 5)]
+
+plt.hist(points, bins=binsForPoints)
+plt.xlabel("Rating")
+plt.ylabel("Number")
+plt.title("Distribution of Wine Rating")
+plt.savefig('graphs/ratings.png')
+plt.close()
+
+
+plt.hist(prices, bins=binsForPrices)
 plt.xlabel("Prices")
 plt.ylabel("Number")
 plt.title("Distribution of Wine Prices")
-plt.savefig('graphs/test.png')
+plt.savefig('graphs/prices.png')
 plt.close()
