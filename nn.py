@@ -68,8 +68,9 @@ test_normed = norm(test)
 model = build_model()
 model.summary()
 
+early_stopper = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 history = model.fit(train_normed, train_labels, epochs=EPOCHS, validation_split=0.2, verbose=0,
-                    callbacks=[tfdocs.modeling.EpochDots()])
+                    callbacks=[tfdocs.modeling.EpochDots(), early_stopper])
 
 hist = pd.DataFrame(history.history)
 hist['epoch'] = history.epoch
@@ -85,3 +86,6 @@ plotter.plot({'Basic': history}, metric="mse")
 plt.ylim([0, 20])
 plt.ylabel('MSE [MPG^2]')
 plt.show()
+
+loss, mae, mse = model.evaluate(test_normed, test_labels, verbose=2)
+print("Testing set Mean Abs Error: {:5.2f} MPG".format(mae))
