@@ -1,8 +1,13 @@
-from matplotlib import pyplot as plt
+import os
+
 import pandas as pd
+from matplotlib import pyplot as plt
 
+DATASET_FILE = 'winemag-data_first150k.csv'
+DATASET_FOLDER = os.environ['WINE_DATASET']
+DATASET_PATH = DATASET_FOLDER + DATASET_FILE
+dir = os.path.dirname(__file__)
 
-DATASET_PATH = "/home/malessebastian/datasets/wine/winemag-data-130k-v2.csv"
 dataset = pd.read_csv(DATASET_PATH)
 
 (points, prices, country, variety) = (dataset['points'].tolist(),
@@ -17,17 +22,15 @@ plt.hist(points, bins=binsForPoints)
 plt.xlabel("Rating")
 plt.ylabel("Number")
 plt.title("Distribution of Wine Rating")
-plt.savefig('graphs/ratings.png')
+plt.savefig(os.path.join(dir, '../graphs/ratings.png'))
 plt.close()
-
 
 plt.hist(prices, bins=binsForPrices)
 plt.xlabel("Prices")
 plt.ylabel("Number")
 plt.title("Distribution of wine Prices")
-plt.savefig('graphs/prices.png')
+plt.savefig(os.path.join(dir, '../graphs/prices.png'))
 plt.close()
-
 
 plt.hist(country, width=1)
 plt.xlabel("Country")
@@ -35,17 +38,15 @@ plt.ylabel("Number")
 plt.title("Distribution of wine's country of origin")
 fig = plt.gcf()
 fig.set_size_inches(28.5, 20.5)
-plt.savefig('graphs/countries.png', dpi=100)
+plt.savefig(os.path.join(dir, '../graphs/countries.png'), dpi=100)
 plt.close()
-
 
 plt.hist(variety)
 plt.xlabel("Variety")
 plt.ylabel("Number")
 plt.title("Distribution of wine variety")
-plt.savefig('graphs/variety.png')
+plt.savefig(os.path.join(dir, '../graphs/variety.png'))
 plt.close()
-
 
 plt.plot(prices, points, 'ro')
 plt.axis([0, 250, 80, 100])
@@ -54,8 +55,5 @@ plt.ylabel("Rating")
 plt.title("Prices against rating")
 fig = plt.gcf()
 fig.set_size_inches(18.5, 10.5)
-plt.savefig('graphs/priceAndRating.png', dpi=100)
+plt.savefig(os.path.join(dir, '../graphs/priceAndRating.png'), dpi=100)
 plt.close()
-
-
-

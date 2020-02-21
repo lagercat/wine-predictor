@@ -1,3 +1,5 @@
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -7,8 +9,9 @@ import tensorflow_docs.modeling
 import tensorflow_docs.plots
 
 DATASET_FILE = 'winemag-data_first150k.csv'
+DATASET_FOLDER = os.environ['WINE_DATASET']
 EPOCHS = 300
-DATASET_PATH = '/Users/lagercat/Devel/ml/datasets/wine-reviews/' + DATASET_FILE
+DATASET_PATH = DATASET_FOLDER + DATASET_FILE
 TAKE_TO = 5
 SEED = 42
 STATS = False
