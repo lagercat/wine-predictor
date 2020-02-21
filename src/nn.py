@@ -19,8 +19,10 @@ STATS = False
 
 def hot_code_columns(columns):
     for column in columns:
-        most_common = raw_dataset[column].value_counts()[:TAKE_TO].index.tolist()
-        raw_dataset[column] = raw_dataset[column].map(lambda x: x if x in most_common else 'other_' + column)
+        most_common = raw_dataset[column].value_counts()[
+                      :TAKE_TO].index.tolist()
+        raw_dataset[column] = raw_dataset[column].map(
+            lambda x: x if x in most_common else 'other_' + column)
 
 
 def norm(x):
@@ -29,7 +31,8 @@ def norm(x):
 
 def build_model():
     new_model = tf.keras.Sequential([
-        tf.keras.layers.Dense(64, activation='relu', input_shape=[len(train.keys())]),
+        tf.keras.layers.Dense(64, activation='relu',
+                              input_shape=[len(train.keys())]),
         tf.keras.layers.Dense(64, activation='relu'),
         tf.keras.layers.Dense(1)
     ])
@@ -71,8 +74,10 @@ test_normed = norm(test)
 model = build_model()
 model.summary()
 
-early_stopper = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
-history = model.fit(train_normed, train_labels, epochs=EPOCHS, validation_split=0.2, verbose=0,
+early_stopper = tf.keras.callbacks.EarlyStopping(monitor='val_loss',
+                                                 patience=10)
+history = model.fit(train_normed, train_labels, epochs=EPOCHS,
+                    validation_split=0.2, verbose=0,
                     callbacks=[tfdocs.modeling.EpochDots(), early_stopper])
 
 hist = pd.DataFrame(history.history)
