@@ -1,7 +1,7 @@
 # 🍷 Predicting wine ratings with Tensorflow
 
-This is a small project I am working on just so that I brush up
-my data science skills and experiment with new algorithms. 
+This is a small project I did just so that I brush up
+my data science skills.
 
 ## The dataset
 The dataset I used can be found [here](https://www.kaggle.com/zynicide/wine-reviews).

@@ -18,12 +18,10 @@ dataset = pd.read_csv(DATASET_PATH)
                                       dataset['variety'])
 
 most_common_countries = country.value_counts()[:TAKE_TO_COUNTRY].index.to_list()
-country = country.map(lambda x: x if x in most_common_countries else
-'other')
+country = country.map(lambda x: x if x in most_common_countries else 'other')
 
 most_common_variety = variety.value_counts()[:TAKE_TO_VARIETY].index.to_list()
-variety = variety.map(lambda x: x if x in most_common_variety else
-'other')
+variety = variety.map(lambda x: x if x in most_common_variety else 'other')
 
 binsForPoints = [x for x in range(80, 101, 2)]
 binsForPrices = [x for x in range(0, 251, 5)]
