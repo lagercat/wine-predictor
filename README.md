@@ -28,7 +28,7 @@ folder to your dataset in an env variable called `WINE_DATASET`.
 ## Possible applications
 Because of the nature of the data, I think even an ideal 
 model would have restricted use cases in a real 
-life application(maybe sell it to a posh winery in France?).
+life application(maybe sell it to a winery in France?).
 However, this kind of prediction based on online ratings is
 quite notorious in some industries(like the music industry).
 
